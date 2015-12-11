@@ -1,0 +1,16 @@
+#ifndef PLATEAU_PUISSANCE_HPP
+#define PLATEAU_PUISSANCE_HPP
+
+#include <string>
+#include "../Plateau.hpp"
+#include "../Joueur.hpp"
+using namespace std;
+
+class Plateau_puissance : public Plateau{
+public: 
+	Plateau_puissance(Joueur *j1, Joueur *j2);
+	virtual ~Plateau_puissance();
+	virtual void affiche();
+};
+
+#endif

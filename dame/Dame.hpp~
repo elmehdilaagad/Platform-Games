@@ -1,0 +1,19 @@
+#ifndef DAME_HPP
+#define DAME_HPP
+
+#include "../Joueur.hpp"
+#include "../Plateau.hpp"
+#include "../Partie.hpp"
+#include <iostream>
+
+class Dame : public Partie {
+private :
+   Joueur *j1,*j2;
+   Plateau *pla;
+public: 
+   Dame(Plateau *p, Joueur *jo1, Joueur *jo2);
+   virtual ~Dame();
+};
+
+
+#endif

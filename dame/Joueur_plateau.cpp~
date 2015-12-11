@@ -1,0 +1,8 @@
+include <string>
+#include "Joueur_puissance.hpp"
+
+Joueur_dame::Joueur_dame(string _nom, int _numero) : Joueur(_nom,_prenom){
+}
+
+
+Joueur_dame::~Joueur_dame(){}

@@ -1,0 +1,23 @@
+#ifndef FIVE_OR_MORE_HPP
+#define FIVE_OR_MORE_HPP
+
+
+
+#include "../Partie.hpp"
+#include <iostream>
+#include <string>
+
+class FiveOrMore : public Partie {
+
+private :
+   int nbColor;
+public: 
+    FiveOrMore();
+    void choix_coordonnees();
+    bool vertical(int);
+    int fin();
+    virtual void start();
+    void choix_utilisateurs();
+};
+
+#endif

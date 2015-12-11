@@ -1,0 +1,19 @@
+#ifndef PARTIE_PUISSANCE_HPP
+#define PARTIE_PUISSANCE_HPP
+
+#include <vector>
+#include "../Case.hpp"
+#include "../Partie.hpp"
+#include "../Joueur.hpp"
+#include "../Plateau.hpp"
+#include "Plateau_puissance.hpp"
+#include "Joueur_puissance.hpp"
+using namespace std;
+
+class Partie_puissance : public Partie{
+public:
+	Partie_puissance(Plateau *_plateau, int _nbJoueurs);
+	virtual ~Partie_puissance();
+};
+
+#endif

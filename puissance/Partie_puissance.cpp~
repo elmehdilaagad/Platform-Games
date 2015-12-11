@@ -1,0 +1,20 @@
+#include <stdlib.h>
+#include "Partie_puissance.hpp"
+using namespace std;
+
+Partie_puissance::Partie_puissance(Plateau *_plateau, int _nbJoueurs){
+
+}
+
+Partie_puissance::~Partie_puissance(){
+
+}
+
+void Partie_echecs::ajouteJoueur(Joueur *j){
+	joueurs.push_back(j);
+}
+
+
+void Partie_echecs::nextPosition(Joueur *joueur){
+	
+}

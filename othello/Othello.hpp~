@@ -1,0 +1,31 @@
+#ifndef OTHELLO_HPP
+#define OTHELLO_HPP
+
+#include "../Partie.hpp"
+#include "../Joueur.hpp"
+
+
+class Othello : public Partie {
+
+private:
+  Joueur *first;
+  Joueur *second;
+  int score;
+
+public:
+  Othello();
+  virtual ~Othello();
+  void jouer(int);
+  void start();
+  void mouvement();
+  bool verification(int x, int y,int j);
+  int ferme(int,int,int,int,bool);
+  int check(int,int,int,int,bool);
+  virtual void ajouteJoueur(Joueur *j);
+  bool est_remplie();
+  int vainqueur();
+  int nbr_case_vide();
+
+};
+
+#endif

@@ -1,0 +1,179 @@
+#include <iostream>
+#include "Puissance.hpp"
+#include "Plateau_puissance.hpp"
+
+Puissance::Puissance(){
+  nbJoueurs = 2;
+  plateau  = new Plateau_puissance();
+  X = 0;
+  Y = 0;
+}
+
+
+Puissance::~Puissance(){}
+
+
+void Puissance::start(){
+ 
+   bool winner; 
+   plateau->affiche();
+   
+   Joueur *player = new Joueur();
+   player = nextJoueur();
+   for (int i = 0; i < 21; i++){
+     movement(player->getNumero());
+     plateau->affiche();
+     winner = gagner();
+
+     if(winner) {
+       cout << "Joueur "<< player->getNumero() << " a gagne ! " << player->getNom() << endl;
+	break;
+     }else {
+        player = nextJoueur(); 
+    } 
+     
+     
+    
+    
+     movement(j2->getNumero());
+     pla->affiche();
+     winner = gagner();
+
+     if(winner) {
+       	cout << "Joueur 2 a gagne ! " << j2->getNom() << endl;
+	break;
+     }
+    
+   }
+}
+
+
+bool Puissance::gagner(){
+    bool h,v,diag1,diag2 ;
+    h = Horizontale();
+    v = Verticale();
+    diag1 = Diagonale1();
+    diag2 = Diagonale2();
+  
+   if(v || h || diag1 || diag2) {
+        if(v) cout << "Verticale !" << endl ;
+        else if(h) cout << "Horizontale !" << endl ;
+        else if(diag1) cout << "Diagonale 1 !" << endl ;
+        else if(diag2) cout << "Diagonale 2 !" << endl ;
+	return true;
+   }else 
+	return false;
+}
+
+void Puissance::movement(int player){ 
+    int num = 0;int c;	
+    cout<<"\nJoueur "<<player<<": Choisissez la colonne : >  "  ;
+    cin>>c;
+    while(c > plateau->getNbCols() || c <= 0){
+      cout<<"\nImpossible d'insérer dans cette colonne !  " << endl ;
+      cout << "Joueur "<<player<<": >  ";
+      cin>>c;
+    }
+    while (plateau->getPlateau()[(plateau->getNbLignes()-1)-num][(c-1)] != 0){
+      num++;
+    }
+    while(num > (plateau->getNbLignes()-1)){
+      cout<<"\nImpossible d'insérer dans cette colonne ! " << endl ;
+      cout << "Joueur "<<player<<": >  ";
+      cin>>c;
+      num = 0;
+      while(c > plateau->getNbCols() || c <= 0){
+	cout<<"\nImpossible d'insérer dans cette colonne !  " << endl ;
+        cout << "Joueur "<<player<<": >  ";
+        cin>>c;
+      }
+      while (plateau->getPlateau()[(plateau->getNbLignes()-1)-num][(c-1)] != 0){
+	num++;
+      }
+      num = 0;
+      while (plateau->getPlateau()[(plateau->getNbLignes()-1)-num][(c-1)] != 0){
+	num++;
+      }
+    }			
+    plateau->getPlateau()[(plateau->getNbLignes()-1)-num][c-1] = player;
+    X = (plateau->getNbLignes()-1)-num;
+    Y = c-1;
+  }
+
+
+bool Puissance::Verticale(){
+    int cmp=1;
+    for(int i = X; i < (plateau->getNbLignes()-1);i++) {
+	if(plateau->getPlateau()[i][Y] == plateau->getPlateau()[i+1][Y] && (cmp < 4)) {
+	    cmp++;
+	}
+	else break;
+    }
+    for(int i = X; i>0;i--) {
+	if(plateau->getPlateau()[i][Y] == plateau->getPlateau()[i-1][Y] && (cmp < 4))
+	    cmp++;
+	else break;
+    }
+    if(cmp >= 4) return true;
+    else return false;
+}
+
+bool Puissance::Horizontale(){
+  int cmp=1;
+    for(int j = Y; j<plateau->getNbCols()-1;j++) {
+	if(plateau->getPlateau()[X][j] == plateau->getPlateau()[X][j+1] && (cmp < 4) )
+	    cmp++;
+	else break;
+    }
+    for(int j = Y; j>0;j--) {
+	if(plateau->getPlateau()[X][j] == plateau->getPlateau()[X][j-1] && (cmp < 4))
+	    cmp++;
+	else break;
+    }
+    if(cmp>=4) return true;
+    else return false;
+
+}
+
+bool Puissance::Diagonale2(){
+    int cmp=1;int j=Y;
+    for(int i = X; i<plateau->getNbLignes()-1 && j<plateau->getNbCols()-1;i++){ 
+	if(plateau->getPlateau()[i][j] == plateau->getPlateau()[i+1][j+1] && (cmp < 4))
+	    cmp++;
+	else break;
+	j++;
+    }
+    j=Y;
+    for(int i = X; i>0 && j>0;i--){
+	if(plateau->getPlateau()[i][j] == plateau->getPlateau()[i-1][j-1] && (cmp < 4))
+	    cmp++;
+	else break;
+	j--;
+    }
+    if(cmp>=4)return true;
+    else return false;
+
+
+  }
+
+bool Puissance::Diagonale1(){
+    int cmp=1;int j=Y;
+    for(int i = X; i< plateau->getNbLignes()-1 && j>0;i++){
+	if(plateau->getPlateau()[i][j] == plateau->getPlateau()[i+1][j-1] && (cmp < 4))
+	    cmp++;
+	else break;
+	j--;
+    }
+    j=Y;
+    for(int i = X; i>0 && j<plateau->getNbCols()-1;i--){
+	if(plateau->getPlateau()[i][j] == plateau->getPlateau()[i-1][j+1] && (cmp < 4))
+	    cmp++;
+	else break;
+	j++;
+    }
+    if(cmp>=4) return true;
+    else return false;
+
+  }
+
+
