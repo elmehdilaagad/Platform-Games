@@ -38,6 +38,7 @@ void lancerJeuDame(){
   Dame *d = new Dame(plateau,j1,j2);
   d->start();
 }
+
 void lancerJeuOthello(){
 
   Joueur *j1 = new Joueur_Othello("noir",1);
@@ -56,8 +57,7 @@ void lancerFiveOrMore(){
   f->start();
 }
 
-int
-main(void){
+int main(void){
   int in = 0;
   while(in == 0){
     cout<<endl;
